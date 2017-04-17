@@ -1,0 +1,61 @@
+#!/bin/bash
+
+MYSQL_USERNAME={{ mysql.user }}
+MYSQL_PASSWORD={{ mysql.password }}
+MYSQL_HOSTNAME={{ mysql.host }}
+MYSQL_SCHEMA={{ mysql.schema }}
+
+while [ True ]; do
+
+   [ -z "$1" ] && break
+
+   case "$1" in
+     "-u" | "--username" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -u/--user must be followed by username" && exit 1
+        MYSQL_USERNAME=$1
+        shift
+        ;;
+     "-p" | "--password" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -p/--password must be followed by password" && exit 1
+        MYSQL_PASSWORD=$1
+        shift
+        ;;
+     "-h" | "--hostname" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -h/--host must be followed by hostname" && exit 1
+        MYSQL_HOSTNAME=$1
+        shift
+        ;;
+     "-s" | "--schema" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -s/--schema must be followed by schema name" && exit 1
+        MYSQL_SCHEMA=$1
+        shift
+        ;;
+     "--help" )
+        echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
+        echo
+        echo "   This script runs a query against mysql database to get count of users whith -1 status who have entered"
+        echo "their numbers but still have not confirmed the process"
+        echo
+        exit 0
+        ;;
+     * )
+        echo "ERROR! Invalid argument: $1"
+        exit 1
+        ;;
+   esac
+
+done
+
+today_date=`date +"%Y-%m-%d %H:%M:%S"`
+yesterday_date=`date --date="yesterday" +"%Y-%m-%d %H:%M:%S"`
+
+result=`
+/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} << EOF1:
+select count(*) from mnp_requestinfolog where status = -1 and createDate between '${yesterday_date}' and '${today_date}';
+EOF1:
+`
+echo "$result"
