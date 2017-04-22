@@ -1,0 +1,69 @@
+#!/bin/bash
+
+MYSQL_USERNAME={{ mysql.user }}
+MYSQL_PASSWORD={{ mysql.password }}
+MYSQL_HOSTNAME={{ mysql.host }}
+MYSQL_SCHEMA={{ mysql.schema }}
+WHEN="today"
+
+while [ True ]; do
+
+   [ -z "$1" ] && break
+
+   case "$1" in
+     "-u" | "--username" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -u/--user must be followed by username" && exit 1
+        MYSQL_USERNAME=$1
+        shift
+        ;;
+     "-p" | "--password" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -p/--password must be followed by password" && exit 1
+        MYSQL_PASSWORD=$1
+        shift
+        ;;
+     "-h" | "--hostname" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -h/--host must be followed by hostname" && exit 1
+        MYSQL_HOSTNAME=$1
+        shift
+        ;;
+     "-s" | "--schema" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -s/--schema must be followed by schema name" && exit 1
+        MYSQL_SCHEMA=$1
+        shift
+        ;;
+     "-w" | "--when" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -w/--when must be followed by a date expression (ie today/yesterday ..)" && exit 1
+        WHEN=$1
+        shift
+        ;;
+     "--help" )
+        echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
+        echo
+        echo "   This script runs a query against mysql database to get count of users whith -1 status who have entered"
+        echo "their numbers but still have not confirmed the process"
+        echo
+        exit 0
+        ;;
+     * )
+        echo "ERROR! Invalid argument: $1"
+        exit 1
+        ;;
+   esac
+
+done
+
+prev_hour=`date --date="1 hour ago" +"%H"`
+start_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}:00:00"`
+end_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}:59:59"`
+
+result=`
+/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} << EOF1:
+select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}';
+EOF1:
+`
+echo "$result"
