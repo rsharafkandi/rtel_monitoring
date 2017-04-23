@@ -44,6 +44,10 @@
         - "get_sim_card_daily_count.sh"
         - "get_delta_of_last1h_sim_card_count.sh"
         - "get_delta_of_last24h_sim_card_count.sh"
+        - "get_registered_requests_hourly_count.sh"
+        - "get_registered_requests_daily_count.sh"
+        - "get_delta_of_last1h_registered_requests.sh"
+        - "get_delta_of_last24h_registered_requests.sh"
       
     - name: Create zabbix-cli directory
       file: 
