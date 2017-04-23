@@ -57,6 +57,7 @@ today_date=`date +"%Y-%m-%d %H:%M:%S"`
 yesterday_date=`date --date="yesterday" +"%Y-%m-%d %H:%M:%S"`
 
 [ $DEBUG_MODE == "True" ] && echo "$0 : /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}" >>$DEBUG_LOG
+[ $DEBUG_MODE == "True" ] && echo "$0 : select count(*) from mnp_requestinfolog where status = -1 and createDate between '${yesterday_date}' and '${today_date}'" >>$DEBUG_LOG
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} << EOF1:
 select count(*) from mnp_requestinfolog where status = -1 and createDate between '${yesterday_date}' and '${today_date}';

@@ -69,7 +69,7 @@ yesterday_end_date=`date --date="yesterday" +"%Y-%m-%d ${prev_hour}:59:59"`
 
 [ $DEBUG_MODE == "True" ] && echo "$0 : /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}" >>$DEBUG_LOG
 [ $DEBUG_MODE == "True" ] && echo "$0 : select count(*) from mnp_requestinfolog where status = 4 and createDate between '${today_start_date}' and '${today_end_date}'"  >>$DEBUG_LOG
-[ $DEBUG_MODE == "True" ] && echo "select count(*) from mnp_requestinfolog where status = 4 and createDate between '${yesterday_start_date}' and '${yesterday_end_date}'" >>$DEBUG_LOG
+[ $DEBUG_MODE == "True" ] && echo "$0 : select count(*) from mnp_requestinfolog where status = 4 and createDate between '${yesterday_start_date}' and '${yesterday_end_date}'" >>$DEBUG_LOG
 
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} << EOF1:

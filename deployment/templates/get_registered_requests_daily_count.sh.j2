@@ -4,10 +4,14 @@ MYSQL_USERNAME={{ mysql.user }}
 MYSQL_PASSWORD={{ mysql.password }}
 MYSQL_HOSTNAME={{ mysql.host }}
 MYSQL_SCHEMA={{ mysql.schema }}
+WHEN="today"
+DEBUG_MODE="False"
+DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 
 while [ True ]; do
 
    [ -z "$1" ] && break
+   [ $DEBUG_MODE == "True" ] && echo "$0 : Processing argument $1" >>$DEBUG_LOG
 
    case "$1" in
      "-u" | "--username" )
@@ -34,6 +38,12 @@ while [ True ]; do
         MYSQL_SCHEMA=$1
         shift
         ;;
+     "-w" | "--when" )
+        shift
+        [ -z "$1" ] && echo "ERROR! -w/--when must be followed by a date expression (ie today/yesterday ..)" && exit 1
+        WHEN=$1
+        shift
+        ;;
      "--help" )
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
         echo
@@ -50,12 +60,15 @@ while [ True ]; do
 
 done
 
-today_date=`date +"%Y-%m-%d %H:%M:%S"`
-yesterday_date=`date --date="yesterday" +"%Y-%m-%d %H:%M:%S"`
+start_date=`date --date="$WHEN" +"%Y-%m-%d 01:0:01"`
+end_date=`date --date="$WHEN" +"%Y-%m-%d 22:59:59"`
 
+[ $DEBUG_MODE == "True" ] && echo "$0 : /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}" >>$DEBUG_LOG
+[ $DEBUG_MODE == "True" ] && echo "$0 : select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}'" >>$DEBUG_LOG
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} << EOF1:
-select count(*) from mnp_requestinfolog where status = -1 and createDate between '${yesterday_date}' and '${today_date}';
+select count(*) from mnp_requestinfolog where status = 1 and createDate between '${start_date}' and '${end_date}';
 EOF1:
 `
+[ $DEBUG_MODE == "True" ] && echo "$0 : result is $result" >>$DEBUG_LOG
 echo "$result"

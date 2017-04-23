@@ -5,10 +5,13 @@ MYSQL_PASSWORD={{ mysql.password }}
 MYSQL_HOSTNAME={{ mysql.host }}
 MYSQL_SCHEMA={{ mysql.schema }}
 WHEN="today"
+DEBUG_MODE="False"
+DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 
 while [ True ]; do
 
    [ -z "$1" ] && break
+   [ $DEBUG_MODE == "True" ] && echo "$0 : Processing argument $1" >>$DEBUG_LOG
 
    case "$1" in
      "-u" | "--username" )
@@ -60,9 +63,12 @@ done
 start_date=`date --date="$WHEN" +"%Y-%m-%d 01:0:01"`
 end_date=`date --date="$WHEN" +"%Y-%m-%d 22:59:59"`
 
+[ $DEBUG_MODE == "True" ] && echo "$0 : /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}" >>$DEBUG_LOG
+[ $DEBUG_MODE == "True" ] && echo "$0 : select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}'" >>$DEBUG_LOG
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} << EOF1:
 select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}';
 EOF1:
 `
+[ $DEBUG_MODE == "True" ] && echo "$0 : result is $result" >>$DEBUG_LOG
 echo "$result"

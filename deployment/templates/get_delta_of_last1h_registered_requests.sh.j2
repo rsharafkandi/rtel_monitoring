@@ -5,10 +5,13 @@ MYSQL_PASSWORD={{ mysql.password }}
 MYSQL_HOSTNAME={{ mysql.host }}
 MYSQL_SCHEMA={{ mysql.schema }}
 MODE="positive"
+DEBUG_MODE="False"
+DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 
 while [ True ]; do
 
    [ -z "$1" ] && break
+   [ $DEBUG_MODE == "True" ] && echo "$0 : Processing argument $1" >>$DEBUG_LOG
 
    case "$1" in
      "-u" | "--username" )
@@ -64,13 +67,20 @@ today_end_date=`date --date="today" +"%Y-%m-%d ${prev_hour}:59:59"`
 yesterday_start_date=`date --date="yesterday" +"%Y-%m-%d ${prev_hour}:00:00"`
 yesterday_end_date=`date --date="yesterday" +"%Y-%m-%d ${prev_hour}:59:59"`
 
+[ $DEBUG_MODE == "True" ] && echo "$0 : /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}" >>$DEBUG_LOG
+[ $DEBUG_MODE == "True" ] && echo "$0 : select count(*) from mnp_requestinfolog where status = 4 and createDate between '${today_start_date}' and '${today_end_date}'"  >>$DEBUG_LOG
+[ $DEBUG_MODE == "True" ] && echo "$0 : select count(*) from mnp_requestinfolog where status = 4 and createDate between '${yesterday_start_date}' and '${yesterday_end_date}'" >>$DEBUG_LOG
+
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} << EOF1:
 select
-( select count(*) from mnp_requestinfolog where status = 4 and createDate between '${today_start_date}' and '${today_end_date}' ) -
-( select count(*) from mnp_requestinfolog where status = 4 and createDate between '${yesterday_start_date}' and '${yesterday_end_date}' );
+( select count(*) from mnp_requestinfolog where status = 1 and createDate between '${today_start_date}' and '${today_end_date}' ) -
+( select count(*) from mnp_requestinfolog where status = 1 and createDate between '${yesterday_start_date}' and '${yesterday_end_date}' );
 EOF1:
 `
+
+[ $DEBUG_MODE == "True" ] && echo "$0 : result is $result"  >>$DEBUG_LOG
+
 if [ "$MODE" == "positive" ]; then
   if [ "$result" -ge 0 ]; then
     echo "$result"
