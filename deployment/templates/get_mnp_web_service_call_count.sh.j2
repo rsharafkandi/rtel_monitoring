@@ -87,11 +87,11 @@ start_date=`date --date="-30 minutes" +"%Y-%m-%d %H:%M:%S"`
 end_date=`date +"%Y-%m-%d %H:%M:%S"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_webservicelog where status = 0 and webServiceName = '${WEB_SERVICE_NAME}' and requestDate between '${start_date}' and '${end_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_webservicelog where status = 0 and webServiceName = LOWER('${WEB_SERVICE_NAME}') and requestDate between '${start_date}' and '${end_date}'"
 
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
-select count(*) from mnp_webservicelog where status = 0 and webServiceName = '${WEB_SERVICE_NAME}' and requestDate between '${start_date}' and '${end_date}'";
+select count(*) from mnp_webservicelog where status = 0 and webServiceName = LOWER('${WEB_SERVICE_NAME}') and requestDate between '${start_date}' and '${end_date}'";
 EOF1:
 `
 

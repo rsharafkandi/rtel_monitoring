@@ -59,7 +59,7 @@ while [ True ]; do
         shift
         [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && echo "ERROR! -m/--mode must be followed by a mode name (ie. positive or negative)"
         [ -z "$1" ] && exit 1
-        MODE=$( echo $1 | tr [:lower:] [:upper:] )
+        MODE=$( echo $1 | tr [:upper:] [:lower:] )
         [ "$MODE" != "positive" -a "$MODE" != "negative" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! Invalid mode: $MODE" 
         [ "$MODE" != "positive" -a "$MODE" != "negative" ] && exit 1
         shift
