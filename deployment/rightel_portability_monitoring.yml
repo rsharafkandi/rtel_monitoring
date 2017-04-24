@@ -37,18 +37,19 @@
         dest: "/usr/lib/zabbix/externalscripts/{{ item }}"
         mode: "0755"
       with_items:
-        - "get_sms_sent_count.sh"
-        - "get_otp_verified_count.sh"
-        - "get_delta_of_minus_1_and_2_status.sh"
-        - "get_sim_card_hourly_count.sh"
-        - "get_sim_card_daily_count.sh"
-        - "get_delta_of_last1h_sim_card_count.sh"
-        - "get_delta_of_last24h_sim_card_count.sh"
-        - "get_registered_requests_hourly_count.sh"
-        - "get_registered_requests_daily_count.sh"
         - "get_delta_of_last1h_registered_requests.sh"
+        - "get_delta_of_last1h_sim_card_count.sh"
         - "get_delta_of_last24h_registered_requests.sh"
-      
+        - "get_delta_of_last24h_sim_card_count.sh"
+        - "get_delta_of_minus_1_and_2_status.sh"
+        - "get_mnp_web_service_call_count.sh"
+        - "get_otp_verified_count.sh"
+        - "get_registered_requests_daily_count.sh"
+        - "get_registered_requests_hourly_count.sh"
+        - "get_sim_card_daily_count.sh"
+        - "get_sim_card_hourly_count.sh"
+        - "get_sms_sent_count.sh"
+
     - name: Create zabbix-cli directory
       file: 
         path: "/opt/zabbix-cli"
@@ -110,6 +111,7 @@
       shell: echo "GRANT SELECT ON lportal.{{ item }} TO {{ mysql.user }}@{{ zabbix.monitoring_ip_address }};" | mysql -u root
       with_items:
         - mnp_requestinfolog
+        - mnp_webservicelog
 
     - name: Flush privileges
       shell: echo "FLUSH PRIVILEGES" | mysql -u root
