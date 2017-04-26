@@ -31,7 +31,7 @@
         state: "directory"
         mode: "0755"
 
-    - name: Copy scripts to /etc/zabbix/external/scripts
+    - name: Copy scripts to zabbix externalscripts directory
       template:
         src: "{{ item }}.j2"
         dest: "/usr/lib/zabbix/externalscripts/{{ item }}"
@@ -49,6 +49,21 @@
         - "get_sim_card_daily_count.sh"
         - "get_sim_card_hourly_count.sh"
         - "get_sms_sent_count.sh"
+
+    - name: Create lib subdir in zabbix externalscripts directory
+      file:
+        path: "/usr/lib/zabbix/externalscripts/lib"
+        state: "directory"
+        mode: "0755"
+
+    - name: Copy additional scripts to lib directory
+      copy:
+        src: "{{ item }}"
+        dest: "/usr/lib/zabbix/externalscripts/lib"
+        mode: "755"
+      with_items:
+        - "greg2jalali.sh"
+        - "examineMNPFile-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
 
     - name: Create zabbix-cli directory
       file: 
