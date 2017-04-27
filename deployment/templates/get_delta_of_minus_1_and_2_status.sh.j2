@@ -15,9 +15,12 @@ DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 SCRIPT_NAME=$( basename $0 )
 
 logger() {
+  export TZ="Asia/Tehran"
   log_date_time=$( date +"%a %x %X" )
   echo "$log_date_time - $SCRIPT_NAME - $@" >>$DEBUG_LOG
 }
+
+export TZ="GMT"
 
 [ $DEBUG_MODE == "True" ] && logger "script called with these arguments: $@"
 
