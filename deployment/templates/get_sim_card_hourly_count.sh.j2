@@ -53,7 +53,7 @@ while [ True ]; do
         ;;
      "-s" | "--schema" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -h/--host must be followed by hostname"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -s/--schema must be followed by schema (database) name"
         [ -z "$1" ] && exit 1
         MYSQL_SCHEMA=$1
         shift

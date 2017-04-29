@@ -46,6 +46,8 @@
         - "get_otp_verified_count.sh"
         - "get_registered_requests_daily_count.sh"
         - "get_registered_requests_hourly_count.sh"
+        - "get_reported_requests_from_db.sh"
+        - "get_reported_requests_from_ftp.sh"
         - "get_sim_card_daily_count.sh"
         - "get_sim_card_hourly_count.sh"
         - "get_sms_sent_count.sh"

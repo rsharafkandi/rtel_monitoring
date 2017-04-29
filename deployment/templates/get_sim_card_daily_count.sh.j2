@@ -53,7 +53,7 @@ while [ True ]; do
         ;;
      "-s" | "--schema" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -h/--host must be followed by hostname"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -s/--schema must be followed by schema (database) name"
         [ -z "$1" ] && exit 1
         MYSQL_SCHEMA=$1
         shift
@@ -83,8 +83,8 @@ while [ True ]; do
 
 done
 
-start_date=`date --date="$WHEN" +"%Y-%m-%d 01:0:01"`
-end_date=`date --date="$WHEN" +"%Y-%m-%d 22:59:59"`
+start_date=`date --date="$WHEN" +"%Y-%m-%d 00:0:01"`
+end_date=`date --date="$WHEN" +"%Y-%m-%d 23:59:59"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
 [ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}'"
