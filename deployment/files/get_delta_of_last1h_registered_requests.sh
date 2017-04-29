@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bin/bash
 #
 # This script is part of Rightel Portability Monitoring Project at Tookasoft
 # April 2017
@@ -6,10 +6,10 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-MYSQL_USERNAME={{ mysql.user }}
-MYSQL_PASSWORD={{ mysql.password }}
-MYSQL_HOSTNAME={{ mysql.host }}
-MYSQL_SCHEMA={{ mysql.schema }}
+MYSQL_USERNAME="root"
+MYSQL_PASSWORD=""
+MYSQL_HOSTNAME="localhost"
+MYSQL_SCHEMA="mnp"
 MODE="positive"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
@@ -32,7 +32,7 @@ while [ True ]; do
    case "$1" in
      "-u" | "--username" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -u/--user must be followed by username"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -u/--user must be followed by username" 
         [ -z "$1" ] && exit 1
         MYSQL_USERNAME=$1
         shift
@@ -46,7 +46,7 @@ while [ True ]; do
         ;;
      "-h" | "--hostname" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -h/--host must be followed by hostname"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -h/--host must be followed by hostname" 
         [ -z "$1" ] && exit 1
         MYSQL_HOSTNAME=$1
         shift
@@ -63,21 +63,20 @@ while [ True ]; do
         [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && echo "ERROR! -m/--mode must be followed by a mode name (ie. positive or negative)"
         [ -z "$1" ] && exit 1
         MODE=$( echo $1 | tr [:upper:] [:lower:] )
-        [ "$MODE" != "positive" -a "$MODE" != "negative" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! Invalid mode: $MODE"
+        [ "$MODE" != "positive" -a "$MODE" != "negative" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! Invalid mode: $MODE" 
         [ "$MODE" != "positive" -a "$MODE" != "negative" ] && exit 1
         shift
         ;;
      "--help" )
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME] [-m|--mode positive|negative]"
         echo
-        echo "   This script runs a query against mysql database to get difference between entries with status=4 of this hour"
-        echo "comparing with entries with status=4 of the same hour yesterday."
-        echo "   Entries with status=4 denote issued SIM cards."
+        echo "   This script runs a query against mysql database to get difference of entries with status=1 of today and yesterday which is the difference"
+        echo "of registered portability requests of today and yesterday"
         echo
         exit 0
         ;;
      * )
-        [ $DEBUG_MODE == "True" ] && logger "ERROR! Invalid argument: $1"
+        [ $DEBUG_MODE == "True" ] && "ERROR! Invalid argument: $1"
         exit 1
         ;;
    esac
@@ -97,8 +96,8 @@ yesterday_end_date=`date --date="yesterday" +"%Y-%m-%d ${prev_hour}:59:59"`
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
 select
-( select count(*) from mnp_requestinfolog where status = 4 and createDate between '${today_start_date}' and '${today_end_date}' ) -
-( select count(*) from mnp_requestinfolog where status = 4 and createDate between '${yesterday_start_date}' and '${yesterday_end_date}' );
+( select count(*) from mnp_requestinfolog where status = 1 and createDate between '${today_start_date}' and '${today_end_date}' ) -
+( select count(*) from mnp_requestinfolog where status = 1 and createDate between '${yesterday_start_date}' and '${yesterday_end_date}' );
 EOF1:
 `
 

@@ -6,10 +6,10 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-MYSQL_USERNAME={{ mysql.user }}
-MYSQL_PASSWORD={{ mysql.password }}
-MYSQL_HOSTNAME={{ mysql.host }}
-MYSQL_SCHEMA={{ mysql.schema }}
+MYSQL_USERNAME="root"
+MYSQL_PASSWORD=""
+MYSQL_HOSTNAME="localhost"
+MYSQL_SCHEMA="mnp"
 WHEN="today"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
@@ -70,8 +70,8 @@ while [ True ]; do
      "--help" )
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
         echo
-        echo "   This script runs a query against mysql database to get count of issued SIM cards during last hour or the same"
-        echo "hour yesterday depending on --when parameter which is by default today"
+        echo "   This script runs a query against mysql database to get count of entries with status=4 ie. no. of issued SIM cards during today"
+        echo "or yesterday depending on --when parameter (by default is today)"
         echo
         exit 0
         ;;
@@ -83,16 +83,17 @@ while [ True ]; do
 
 done
 
-prev_hour=`date --date="1 hour ago" +"%H"`
-start_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}:00:00"`
-end_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}:59:59"`
+start_date=`date --date="$WHEN" +"%Y-%m-%d 00:0:01"`
+end_date=`date --date="$WHEN" +"%Y-%m-%d 23:59:59"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
 [ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}'"
+
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
 select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}';
 EOF1:
 `
+
 [ $DEBUG_MODE == "True" ] && logger "result is $result"
 echo "$result"

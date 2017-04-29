@@ -6,11 +6,11 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-MYSQL_USERNAME={{ mysql.user }}
-MYSQL_PASSWORD={{ mysql.password }}
-MYSQL_HOSTNAME={{ mysql.host }}
-MYSQL_SCHEMA={{ mysql.schema }}
-WHEN="today"
+MYSQL_USERNAME="root"
+MYSQL_PASSWORD=""
+MYSQL_HOSTNAME="localhost"
+MYSQL_SCHEMA="mnp"
+WEB_SERVICE_NAME=""
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 SCRIPT_NAME=$( basename $0 )
@@ -53,25 +53,23 @@ while [ True ]; do
         ;;
      "-s" | "--schema" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -s/--schema must be followed by schema (database) name"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -h/--host must be followed by hostname"
         [ -z "$1" ] && exit 1
         MYSQL_SCHEMA=$1
         shift
         ;;
-     "-w" | "--when" )
+     "-w" | "--webservice" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -w/--when must be followed by a date expression (ie today/yesterday ..)"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -w/--webservice must be followed by a web service name"
         [ -z "$1" ] && exit 1
-        WHEN=$( echo $1 | tr [:upper:] [:lower:] )
-        [ "$WHEN" != "today" -a "$WHEN" != "yesterday" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! Invalid mode: $WHEN"
-        [ "$WHEN" != "today" -a "$WHEN" != "yesterday" ] && exit 1
+        WEB_SERVICE_NAME=$( echo "$1" | tr [:upper:] [:lower:] )
         shift
         ;;
      "--help" )
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
         echo
-        echo "   This script runs a query against mysql database to get count of entries with status=4 ie. no. of issued SIM cards during today"
-        echo "or yesterday depending on --when parameter (by default is today)"
+        echo "   This script runs a query against mysql database to get count of call of the webservice whose name is passed to script"
+        echo "during last 30 minutes."
         echo
         exit 0
         ;;
@@ -83,15 +81,20 @@ while [ True ]; do
 
 done
 
-start_date=`date --date="$WHEN" +"%Y-%m-%d 00:0:01"`
-end_date=`date --date="$WHEN" +"%Y-%m-%d 23:59:59"`
+if [ -z "$WEB_SERVICE_NAME" ]; then
+  [ $DEBUG_MODE == "True" ] && logger "ERROR: No web-service name was passed to script"
+  exit 1
+fi
+
+start_date=`date --date="-30 minutes" +"%Y-%m-%d %H:%M:%S"`
+end_date=`date +"%Y-%m-%d %H:%M:%S"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_webservicelog where status = 0 and LOWER(webServiceName) = '${WEB_SERVICE_NAME}' and requestDate between '${start_date}' and '${end_date}'"
 
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
-select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}';
+select count(*) from mnp_webservicelog where status = 0 and LOWER(webServiceName) = '${WEB_SERVICE_NAME}' and requestDate between '${start_date}' and '${end_date}';
 EOF1:
 `
 

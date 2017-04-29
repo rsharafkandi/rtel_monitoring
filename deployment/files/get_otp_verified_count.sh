@@ -6,10 +6,10 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-MYSQL_USERNAME={{ mysql.user }}
-MYSQL_PASSWORD={{ mysql.password }}
-MYSQL_HOSTNAME={{ mysql.host }}
-MYSQL_SCHEMA={{ mysql.schema }}
+MYSQL_USERNAME="root"
+MYSQL_PASSWORD=""
+MYSQL_HOSTNAME="localhost"
+MYSQL_SCHEMA="mnp"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 SCRIPT_NAME=$( basename $0 )
@@ -52,7 +52,7 @@ while [ True ]; do
         ;;
      "-s" | "--schema" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -h/--host must be followed by hostname"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -s/--schema must be followed by schema name"
         [ -z "$1" ] && exit 1
         MYSQL_SCHEMA=$1
         shift
@@ -60,36 +60,29 @@ while [ True ]; do
      "--help" )
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
         echo
-        echo "   This script runs a query against mysql database to get count of registered requests in database from yesterday"
-        echo "till today. The result is compared with the content of excel file which is submitted to Post office."
+        echo "   This script runs a query against mysql database to get count of entries with status=-2 during last 24 hours"
         echo
         exit 0
         ;;
      * )
-        [ $DEBUG_MODE == "True" ] && logger "ERROR! Invalid argument: $1"
+        echo "ERROR! Invalid argument: $1"
         exit 1
         ;;
    esac
 
 done
 
-today_day_of_week=`date +%a`
-if [ "$today_day_of_week" == "Thu" ]; then
-  start_date=`date --date="yesterday" +"%Y-%m-%d 06:00:00"`
-  end_date=`date +"%Y-%m-%d 06:00:00"`
-else
-  start_date=`date --date="yesterday" +"%Y-%m-%d 09:00:00"`
-  end_date=`date +"%Y-%m-%d 09:00:00"`
-fi
+today_date=`date +"%Y-%m-%d %H:%M:%S"`
+yesterday_date=`date --date="yesterday" +"%Y-%m-%d %H:%M:%S"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 2 and createDate between '${start_date}' and '${end_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = -2 and createDate between '${yesterday_date}' and '${today_date}'"
 
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
-select count(*) from mnp_requestinfolog where status = 2 and createDate between '${start_date}' and '${end_date}';
+select count(*) from mnp_requestinfolog where status = -2 and createDate between '${yesterday_date}' and '${today_date}';
 EOF1:
 `
-
 [ $DEBUG_MODE == "True" ] && logger "result is $result"
+
 echo "$result"

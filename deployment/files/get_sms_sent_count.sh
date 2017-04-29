@@ -6,10 +6,10 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-MYSQL_USERNAME={{ mysql.user }}
-MYSQL_PASSWORD={{ mysql.password }}
-MYSQL_HOSTNAME={{ mysql.host }}
-MYSQL_SCHEMA={{ mysql.schema }}
+MYSQL_USERNAME="root"
+MYSQL_PASSWORD=""
+MYSQL_HOSTNAME="localhost"
+MYSQL_SCHEMA="mnp"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 SCRIPT_NAME=$( basename $0 )
