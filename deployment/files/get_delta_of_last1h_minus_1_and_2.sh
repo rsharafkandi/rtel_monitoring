@@ -61,7 +61,7 @@ while [ True ]; do
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
         echo
         echo "   This script runs a query against mysql database to get difference between entries with status=-1 and entries with status=-2"
-        echo "during the last 24 hours."
+        echo "during the last hour."
         echo
         exit 0
         ;;
@@ -73,18 +73,18 @@ while [ True ]; do
 
 done
 
-today_date=`date +"%Y-%m-%d %H:%M:%S"`
-yesterday_date=`date --date="yesterday" +"%Y-%m-%d %H:%M:%S"`
+start_date=`date --date="1 hour ago" +"%Y-%m-%d %H:%M:%S"`
+end_date=`date +"%Y-%m-%d %H:%M:%S"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = -2 and createDate between '${yesterday_date}' and '${today_date}'"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = -1 and createDate between '${yesterday_date}' and '${today_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = -2 and createDate between '${start_date}' and '${end_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = -1 and createDate between '${start_date}' and '${end_date}'"
 
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
 SELECT ABS(
-  (select count(*) from mnp_requestinfolog where status = -2 and createDate between '${yesterday_date}' and '${today_date}') -
-  (select count(*) from mnp_requestinfolog where status = -1 and createDate between '${yesterday_date}' and '${today_date}') );
+  (select count(*) from mnp_requestinfolog where status = -2 and createDate between '${start_date}' and '${end_date}') -
+  (select count(*) from mnp_requestinfolog where status = -1 and createDate between '${start_date}' and '${end_date}') );
 EOF1:
 `
 
