@@ -8,7 +8,7 @@
 
 MYSQL_USERNAME="root"
 MYSQL_PASSWORD=""
-MYSQL_HOSTNAME="localhos"
+MYSQL_HOSTNAME="localhost"
 MYSQL_SCHEMA="mnp"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"

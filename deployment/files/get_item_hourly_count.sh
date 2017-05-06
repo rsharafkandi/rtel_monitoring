@@ -11,6 +11,7 @@ MYSQL_PASSWORD=""
 MYSQL_HOSTNAME="localhost"
 MYSQL_SCHEMA="mnp"
 WHEN="today"
+STATUS="0"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 SCRIPT_NAME=$( basename $0 )
@@ -53,9 +54,21 @@ while [ True ]; do
         ;;
      "-s" | "--schema" )
         shift
-        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -s/--schema must be followed by schema (database) name"
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -s/--schema must be followed by schema name"
         [ -z "$1" ] && exit 1
         MYSQL_SCHEMA=$1
+        shift
+        ;;
+     "-t" | "--status" )
+        shift
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -t/--status must be followed by a number (e.g.: -1 for sms_sent, -2 for user verified sms ..."
+        [ -z "$1" ] && exit 1
+        STATUS=$1
+        let STATUS_PLUS_ZERO=STATUS+0
+        if [ "$STATUS_PLUS_ZERO" != "$STATUS" ]; then
+           [ $DEBUG_MODE == "True" ] && logger "ERROR! The passed status ($STATUS) is not a vaild integer number"
+           exit 1 
+        fi
         shift
         ;;
      "-w" | "--when" )
@@ -68,10 +81,13 @@ while [ True ]; do
         shift
         ;;
      "--help" )
-        echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
+        echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME] [-t|--status STATUS] [-w|--when today|yesterday]"
         echo
-        echo "   This script runs a query against mysql database to get count of issued SIM cards during last hour or the same"
-        echo "hour yesterday depending on --when parameter which is by default today"
+        echo " This script runs a query against mysql database to get count of items with status == STATUS in mnp_requestinfolog table"
+        echo " Some valid statuses are:"
+        echo "    -1  : SMS Sent to user"
+        echo "    -2  : User verified SMS Reception"
+        echo "    10  : SHAHKAR verification done"
         echo
         exit 0
         ;;
@@ -83,15 +99,15 @@ while [ True ]; do
 
 done
 
-prev_hour=`date --date="1 hour ago" +"%H"`
-start_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}:00:00"`
-end_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}:59:59"`
+prev_hour=`date --date="1 hour ago" +"%H:%M:%S"`
+start_date=`date --date="$WHEN" +"%Y-%m-%d %H:%M:%S"`
+end_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = ${STATUS} and createDate between '${start_date}' and '${end_date}'"
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
-select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}';
+select count(*) from mnp_requestinfolog where status = ${STATUS} and createDate between '${start_date}' and '${end_date}';
 EOF1:
 `
 [ $DEBUG_MODE == "True" ] && logger "result is $result"

@@ -6,7 +6,7 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-LIBRARY_PATH=../files
+LIBRARY_PATH="lib"
 FTP_IP_ADDRESS="172.20.7.4"
 FTP_USERNAME=xxx
 FTP_PASSWORD=yyy
