@@ -11,6 +11,7 @@ MYSQL_PASSWORD=""
 MYSQL_HOSTNAME="localhost"
 MYSQL_SCHEMA="mnp"
 WHEN="today"
+STATUS="0"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 SCRIPT_NAME=$( basename $0 )
@@ -58,6 +59,18 @@ while [ True ]; do
         MYSQL_SCHEMA=$1
         shift
         ;;
+     "-t" | "--status" )
+        shift
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -t/--status must be followed by a number (e.g.: -1 for sms_sent, -2 for user verified sms ..."
+        [ -z "$1" ] && exit 1
+        STATUS=$1
+        let STATUS_PLUS_ZERO=STATUS+0
+        if [ "$STATUS_PLUS_ZERO" != "$STATUS" ]; then
+           [ $DEBUG_MODE == "True" ] && logger "ERROR! The passed status ($STATUS) is not a vaild integer number"
+           exit 1 
+        fi
+        shift
+        ;;
      "-w" | "--when" )
         shift
         [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -w/--when must be followed by a date expression (ie today/yesterday ..)"
@@ -70,8 +83,13 @@ while [ True ]; do
      "--help" )
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
         echo
-        echo "   This script runs a query against mysql database to get count of entries with status=4 ie. no. of issued SIM cards during today"
-        echo "or yesterday depending on --when parameter (by default is today)"
+        echo "   This script runs a query against mysql database to get count of entries with status=STATUS on today or on yesterday" 
+        echo "depending on --when parameter (by default is today)"
+        echo
+        echo " Some valid statuses are:"
+        echo "    -1  : SMS Sent to user"
+        echo "    -2  : User verified SMS Reception"
+        echo "    10  : SHAHKAR verification done"
         echo
         exit 0
         ;;
@@ -87,11 +105,11 @@ start_date=`date --date="$WHEN" +"%Y-%m-%d 00:0:01"`
 end_date=`date --date="$WHEN" +"%Y-%m-%d 23:59:59"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = ${STATUS} and createDate between '${start_date}' and '${end_date}'"
 
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
-select count(*) from mnp_requestinfolog where status = 4 and createDate between '${start_date}' and '${end_date}';
+select count(*) from mnp_requestinfolog where status = ${STATUS} and createDate between '${start_date}' and '${end_date}';
 EOF1:
 `
 

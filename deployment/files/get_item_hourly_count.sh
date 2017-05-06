@@ -84,6 +84,7 @@ while [ True ]; do
         echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME] [-t|--status STATUS] [-w|--when today|yesterday]"
         echo
         echo " This script runs a query against mysql database to get count of items with status == STATUS in mnp_requestinfolog table"
+        echo
         echo " Some valid statuses are:"
         echo "    -1  : SMS Sent to user"
         echo "    -2  : User verified SMS Reception"
