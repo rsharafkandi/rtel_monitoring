@@ -101,8 +101,8 @@ while [ True ]; do
 done
 
 prev_hour=`date --date="1 hour ago" +"%H:%M:%S"`
-start_date=`date --date="$WHEN" +"%Y-%m-%d %H:%M:%S"`
-end_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}"`
+start_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}"`
+end_date=`date --date="$WHEN" +"%Y-%m-%d %H:%M:%S"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
 [ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = ${STATUS} and createDate between '${start_date}' and '${end_date}'"
