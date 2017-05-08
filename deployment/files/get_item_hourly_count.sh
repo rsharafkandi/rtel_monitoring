@@ -22,8 +22,6 @@ logger() {
   echo "$log_date_time - $SCRIPT_NAME - $@" >>$DEBUG_LOG
 }
 
-export TZ="GMT"
-
 [ $DEBUG_MODE == "True" ] && logger "script called with these arguments: $@"
 
 while [ True ]; do
@@ -99,6 +97,8 @@ while [ True ]; do
    esac
 
 done
+
+export TZ="GMT"
 
 prev_hour=`date --date="1 hour ago" +"%H:%M:%S"`
 start_date=`date --date="$WHEN" +"%Y-%m-%d ${prev_hour}"`

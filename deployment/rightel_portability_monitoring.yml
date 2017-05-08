@@ -42,6 +42,7 @@
         - "get_delta_of_last24h_registered_requests.sh"
         - "get_delta_of_last24h_sim_card_count.sh"
         - "get_delta_of_last1h_minus_1_and_2.sh"
+        - "get_delta_of_last1h_minus_1_and_plus_1.sh"
         - "get_item_hourly_count.sh"
         - "get_item_daily_count.sh"
         - "get_mnp_web_service_call_count.sh"
