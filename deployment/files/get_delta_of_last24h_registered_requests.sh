@@ -10,6 +10,7 @@ MYSQL_USERNAME="root"
 MYSQL_PASSWORD=""
 MYSQL_HOSTNAME="localhost"
 MYSQL_SCHEMA="mnp"
+MODE="positive"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 SCRIPT_NAME=$( basename $0 )
@@ -50,6 +51,15 @@ while [ True ]; do
         MYSQL_HOSTNAME=$1
         shift
         ;;
+     "-m" | "--mode" )
+        shift
+        [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && echo "ERROR! -m/--mode must be followed by a mode name (ie. positive or negative)"
+        [ -z "$1" ] && exit 1
+        MODE=$( echo $1 | tr [:upper:] [:lower:] )
+        [ "$MODE" != "positive" -a "$MODE" != "negative" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! Invalid mode: $MODE"
+        [ "$MODE" != "positive" -a "$MODE" != "negative" ] && exit 1
+        shift
+        ;;
      "-s" | "--schema" )
         shift
         [ -z "$1" ] && [ $DEBUG_MODE == "True" ] && logger "ERROR! -s/--schema must be followed by schema name"
@@ -58,7 +68,7 @@ while [ True ]; do
         shift
         ;;
      "--help" )
-        echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME]"
+        echo "Usage $0 [-u|--username USERNAME] [-p|--password PASSWORD] [-h|--hostname HOSTNAME] [-s|--schema SCHEMANAME] [-m|--mode positive|negative]"
         echo
         echo "   This script runs a query against mysql database to get difference between entries with 1 status of today and"
         echo "yesterday which is the difference between registered portability requests of today and yesterday"
@@ -91,4 +101,21 @@ EOF1:
 `
 
 [ $DEBUG_MODE == "True" ] && logger "result is $result"
-echo "$result"
+
+if [ "$MODE" == "positive" ]; then
+  if [ "$result" -ge 0 ]; then
+    echo "$result"
+  else
+    echo "0"
+  fi
+
+elif [ "$MODE" == "negative" ]; then
+  if [ "$result" -le 0 ]; then
+    let p_result=result*-1
+    echo "$p_result"
+  else
+    echo "0"
+  fi
+
+fi
+
