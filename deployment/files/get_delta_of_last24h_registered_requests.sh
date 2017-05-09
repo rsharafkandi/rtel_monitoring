@@ -74,9 +74,9 @@ while [ True ]; do
 done
 
 today_start_date=`date --date="today" +"%Y-%m-%d 00:00:01"`
-today_end_date=`date --date="today" +"%Y-%m-%d 23:59:59"`
+today_end_date=`date --date="today" +"%Y-%m-%d %H:%M:%S"`
 yesterday_start_date=`date --date="yesterday" +"%Y-%m-%d 00:00:01"`
-yesterday_end_date=`date --date="yesterday" +"%Y-%m-%d 23:59:59"`
+yesterday_end_date=`date --date="yesterday" +"%Y-%m-%d %H:%M:%S"`
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
 [ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 4 and createDate between '${today_start_date}' and '${today_end_date}'"
