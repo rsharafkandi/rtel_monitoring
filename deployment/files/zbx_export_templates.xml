@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-04-24T10:10:13Z</date>
+    <date>2017-05-14T12:00:57Z</date>
     <groups>
         <group>
             <name>Portability Monitoring Hosts</name>
@@ -23,6 +23,92 @@
                 </application>
             </applications>
             <items>
+                <item>
+                    <name>delta_of_minus_1_and_2_status</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_delta_of_last1h_minus_1_and_2.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>delta_of_minus_1_and_plus_1_status</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_delta_of_last1h_minus_1_and_plus_1.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
                 <item>
                     <name>delta_of_last_hour_registered_requests_less</name>
                     <type>10</type>
@@ -202,7 +288,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;]</key>
-                    <delay>0</delay>
+                    <delay>14400</delay>
                     <history>56</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -218,7 +304,7 @@
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
-                    <delay_flex>h23</delay_flex>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
@@ -245,7 +331,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;positive&quot;]</key>
-                    <delay>0</delay>
+                    <delay>14400</delay>
                     <history>56</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -261,7 +347,7 @@
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
-                    <delay_flex>h23</delay_flex>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
@@ -368,13 +454,486 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>delta_of_minus_1_and_2_status</name>
+                    <name>today_registered_request_count</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>get_delta_of_minus_1_and_2_status.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
-                    <delay>60</delay>
+                    <key>get_item_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>14400</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>yesterday_registered_request_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                    <delay>14400</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>today_sim_card_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;4&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>14400</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>yesterday_sim_card_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;4&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                    <delay>14400</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>last_hour_sms_sent_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>last_hour_otp_verified_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-2&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>last_hour_rightel_enquiry_done_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-6&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>last_hour_registered_requests_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>yesterday_last_hour_registered_requests_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>last_hour_sim_card_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;4&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>yesterday_last_hour_sim_card_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;4&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>last_hour_shahkar_verified_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;10&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <delay>1800</delay>
                     <history>56</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -626,55 +1185,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>otpVerifiedCount</name>
+                    <name>db_reported_requests</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>get_otp_verified_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
-                    <delay>60</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>today_registered_request_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_registered_requests_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    <key>get_reported_requests_from_db.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
                     <delay>0</delay>
                     <history>56</history>
                     <trends>365</trends>
@@ -691,7 +1207,7 @@
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
-                    <delay_flex>h22</delay_flex>
+                    <delay_flex>wd1-3,6-7h14;wd4h11</delay_flex>
                     <params/>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
@@ -712,12 +1228,12 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>yesterday_registered_request_count</name>
+                    <name>ftp_reported_requests</name>
                     <type>10</type>
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>get_registered_requests_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                    <key>get_reported_requests_from_ftp.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
                     <delay>0</delay>
                     <history>56</history>
                     <trends>365</trends>
@@ -734,308 +1250,7 @@
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
-                    <delay_flex>h22</delay_flex>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>last_hour_registered_requests_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_registered_requests_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
-                    <delay>1800</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>yesterday_last_hour_registered_requests_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_registered_requests_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
-                    <delay>1800</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>today_sim_card_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_sim_card_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
-                    <delay>0</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex>h22</delay_flex>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>yesterday_sim_card_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_sim_card_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
-                    <delay>0</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex>h22</delay_flex>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>last_hour_sim_card_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_sim_card_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
-                    <delay>1800</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>yesterday_last_hour_sim_card_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_sim_card_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
-                    <delay>1800</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
-                    <name>smsSentCount</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_sms_sent_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
-                    <delay>60</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
+                    <delay_flex>wd1-3,6-7h14;wd4h11</delay_flex>
                     <params/>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
@@ -1091,7 +1306,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10 and {Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_registered_requests_comparing_yesterday</name>
             <url/>
             <status>0</status>
@@ -1101,7 +1316,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10 and {Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_sim_cards_comparing_the_same_hour_yesterday</name>
             <url/>
             <status>0</status>
@@ -1111,7 +1326,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10 and {Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_sim_cards_comparing_yesterday</name>
             <url/>
             <status>0</status>
@@ -1121,7 +1336,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_minus_1_and_2_status.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()}&gt;10</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_2.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()}&gt;10</expression>
             <name>too_much_difference_between_minus_1_and_2_status</name>
             <url/>
             <status>0</status>
@@ -1132,6 +1347,166 @@
         </trigger>
     </triggers>
     <graphs>
+        <graph>
+            <name>Portability Monitoring - Last Hour MNP Requests</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>1</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>1A7C11</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-2&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>6C59DC</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>2767EE</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-6&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>A59510</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;10&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>B06080</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;4&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>00CCCC</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Portability Monitoring - Registered Requests (daily)</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>1</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>CC0000</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>CCAA00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;positive&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>6C59DC</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>00CC00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_daily_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
         <graph>
             <name>Portability Monitoring - Registered Requests (hourly)</name>
             <width>900</width>
@@ -1165,6 +1540,30 @@
                 <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>0</drawtype>
+                    <color>6C59DC</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>00CC00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <drawtype>0</drawtype>
                     <color>CCAA00</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
@@ -1174,28 +1573,116 @@
                         <key>get_delta_of_last1h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;positive&quot;]</key>
                     </item>
                 </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Portability Monitoring - Sent SMS vs Registered Requests</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>1</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
                 <graph_item>
-                    <sortorder>2</sortorder>
-                    <drawtype>0</drawtype>
-                    <color>6C59DC</color>
+                    <sortorder>0</sortorder>
+                    <drawtype>2</drawtype>
+                    <color>00CCCC</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
                         <host>Template Portability Monitoring</host>
-                        <key>get_registered_requests_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
                     </item>
                 </graph_item>
                 <graph_item>
-                    <sortorder>3</sortorder>
+                    <sortorder>1</sortorder>
                     <drawtype>0</drawtype>
-                    <color>00CC00</color>
+                    <color>115511</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
                         <host>Template Portability Monitoring</host>
-                        <key>get_registered_requests_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>DD1111</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_delta_of_last1h_minus_1_and_plus_1.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+        <graph>
+            <name>Portability Monitoring - Sent SMS vs Verfied SMS</name>
+            <width>900</width>
+            <height>200</height>
+            <yaxismin>0.0000</yaxismin>
+            <yaxismax>100.0000</yaxismax>
+            <show_work_period>1</show_work_period>
+            <show_triggers>1</show_triggers>
+            <type>1</type>
+            <show_legend>1</show_legend>
+            <show_3d>0</show_3d>
+            <percent_left>0.0000</percent_left>
+            <percent_right>0.0000</percent_right>
+            <ymin_type_1>0</ymin_type_1>
+            <ymax_type_1>0</ymax_type_1>
+            <ymin_item_1>0</ymin_item_1>
+            <ymax_item_1>0</ymax_item_1>
+            <graph_items>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>2</drawtype>
+                    <color>00BB00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-2&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <drawtype>2</drawtype>
+                    <color>00CCCC</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;-1&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <drawtype>0</drawtype>
+                    <color>FF4433</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Portability Monitoring</host>
+                        <key>get_delta_of_last1h_minus_1_and_2.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1233,13 +1720,13 @@
                 <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>0</drawtype>
-                    <color>00CC00</color>
+                    <color>558833</color>
                     <yaxisside>0</yaxisside>
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
                         <host>Template Portability Monitoring</host>
-                        <key>get_sim_card_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;4&quot;,&quot;-w&quot;,&quot;today&quot;]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1251,7 +1738,7 @@
                     <type>0</type>
                     <item>
                         <host>Template Portability Monitoring</host>
-                        <key>get_sim_card_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
+                        <key>get_item_hourly_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-t&quot;,&quot;4&quot;,&quot;-w&quot;,&quot;yesterday&quot;]</key>
                     </item>
                 </graph_item>
                 <graph_item>
@@ -1264,62 +1751,6 @@
                     <item>
                         <host>Template Portability Monitoring</host>
                         <key>get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;positive&quot;]</key>
-                    </item>
-                </graph_item>
-            </graph_items>
-        </graph>
-        <graph>
-            <name>Portability Monitoring - Users with -1 or -2 status</name>
-            <width>900</width>
-            <height>200</height>
-            <yaxismin>0.0000</yaxismin>
-            <yaxismax>100.0000</yaxismax>
-            <show_work_period>1</show_work_period>
-            <show_triggers>1</show_triggers>
-            <type>1</type>
-            <show_legend>1</show_legend>
-            <show_3d>0</show_3d>
-            <percent_left>0.0000</percent_left>
-            <percent_right>0.0000</percent_right>
-            <ymin_type_1>0</ymin_type_1>
-            <ymax_type_1>0</ymax_type_1>
-            <ymin_item_1>0</ymin_item_1>
-            <ymax_item_1>0</ymax_item_1>
-            <graph_items>
-                <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>2</drawtype>
-                    <color>00BB00</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Portability Monitoring</host>
-                        <key>get_otp_verified_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>1</sortorder>
-                    <drawtype>2</drawtype>
-                    <color>00CCCC</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Portability Monitoring</host>
-                        <key>get_sms_sent_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>2</sortorder>
-                    <drawtype>0</drawtype>
-                    <color>FF4433</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Portability Monitoring</host>
-                        <key>get_delta_of_minus_1_and_2_status.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
                     </item>
                 </graph_item>
             </graph_items>
