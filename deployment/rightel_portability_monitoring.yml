@@ -5,11 +5,6 @@
 
   vars:
 
-    mysql:
-      schema: "mnp"
-      user: "user2"
-      password: "xxx"
-      host: "Portal-DB1"
     zabbix:
       admin_username: "Admin"
       admin_password: "Adm11npa55$$"
@@ -123,7 +118,7 @@
     mysql:
       schema: "mnp"
       user: "zab_mon"
-      password: "ZAaBbMMMon90618"
+      password: "xxx"
       host: "localhost"
     zabbix:
       monitoring_ip_address: "172.20.94.22"
