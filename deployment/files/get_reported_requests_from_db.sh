@@ -75,8 +75,11 @@ done
 
 today_day_of_week=`date +%a`
 if [ "$today_day_of_week" == "Thu" ]; then
-  start_date=`date --date="yesterday" +"%Y-%m-%d 06:00:00"`
+  start_date=`date --date="yesterday" +"%Y-%m-%d 09:00:00"`
   end_date=`date +"%Y-%m-%d 06:00:00"`
+elif [ "$today_day_of_week" == "Sat" ]; then
+  start_date=`date --date="2 days ago" +"%Y-%m-%d 06:00:00"`
+  end_daet=`date +"%Y-%m-%d 09:00:00"` 
 else
   start_date=`date --date="yesterday" +"%Y-%m-%d 09:00:00"`
   end_date=`date +"%Y-%m-%d 09:00:00"`

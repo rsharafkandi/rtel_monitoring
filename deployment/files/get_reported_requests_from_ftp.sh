@@ -55,3 +55,5 @@ row_count=$(java -cp ${LIBRARY_PATH}/examineMNPFile-0.0.1-SNAPSHOT-jar-with-depe
 [ $DEBUG_MODE == "True" ] && logger "Row count of ${latest_report_file} is $row_count"
 
 echo ${row_count}
+
+rm -f ${latest_report_file} >/dev/null 2>&1
