@@ -7,12 +7,16 @@
 
     mysql:
       schema: "mnp"
-      user: "zab_mon"
-      password: "ZAaBbMMMon90618"
+      user: "user2"
+      password: "xxx"
       host: "Portal-DB1"
     zabbix:
       admin_username: "Admin"
       admin_password: "Adm11npa55$$"
+    ftp:
+      server_address: "172.20.20.1"
+      username: "user1"
+      password: "xxxx" 
 
   tasks:
     - name: set localtime to Asia/Tehran
@@ -49,6 +53,14 @@
         - "get_reported_requests_from_db.sh"
         - "get_reported_requests_from_ftp.sh"
 
+    - name: Copy other scripts 
+      template:
+        src: "{{ item }}.j2"
+        dest: "/usr/lib/zabbix/externalscripts/{{ item }}"
+        mode: "0755"
+      with_items:
+        - "init_header.sh"
+      
     - name: Create lib subdir in zabbix externalscripts directory
       file:
         path: "/usr/lib/zabbix/externalscripts/lib"
@@ -114,7 +126,7 @@
       password: "ZAaBbMMMon90618"
       host: "localhost"
     zabbix:
-      monitoring_ip_address: "Monitoring"
+      monitoring_ip_address: "172.20.94.22"
 
   tasks:
     - name: Create monitoring user

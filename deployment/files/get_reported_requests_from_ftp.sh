@@ -6,10 +6,9 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
+. init_header.sh
+
 LIBRARY_PATH="lib"
-FTP_IP_ADDRESS="172.20.7.4"
-FTP_USERNAME=xxx
-FTP_PASSWORD=yyy
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 DEST_DIR="/tmp"
