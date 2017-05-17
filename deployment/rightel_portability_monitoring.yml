@@ -28,12 +28,13 @@
       apt:
         name: python-pip
         state: present
+        update_cache: yes
 
     - name: Install python packages
       command: pip install {{ item }}
       with_items:
         - "suds"
-        - "suds_request"
+        - "suds_requests"
 
     - name: Create a folder for external scripts
       file:

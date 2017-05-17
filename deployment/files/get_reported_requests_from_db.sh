@@ -75,22 +75,28 @@ done
 
 today_day_of_week=`date +%a`
 if [ "$today_day_of_week" == "Thu" ]; then
-  start_date=`date --date="yesterday" +"%Y-%m-%d 09:00:00"`
-  end_date=`date +"%Y-%m-%d 06:00:00"`
+  hour1=`TZ=GMT; date --date='TZ="Asia/Tehran" 12:30:00' +"%H:%M:00"`
+  start_date=`date --date='yesterday' +"%Y-%m-%d $hour1"`
+  hour2=`TZ=GMT; date --date='TZ="Asia/Tehran" 10:00:00' +"%H:%M:00"`
+  end_date=`date +"%Y-%m-%d $hour2"`
 elif [ "$today_day_of_week" == "Sat" ]; then
-  start_date=`date --date="2 days ago" +"%Y-%m-%d 06:00:00"`
-  end_daet=`date +"%Y-%m-%d 09:00:00"` 
+  hour1=`TZ=GMT; date --date='TZ="Asia/Tehran" 10:00:00' +"%H:%M:00"`
+  start_date=`date --date="2 days ago" +"%Y-%m-%d $hour1"`
+  hour2=`TZ=GMT; date --date='TZ="Asia/Tehran" 12:30:00' +"%H:%M:00"`
+  end_date=`date +"%Y-%m-%d $hour2"`
 else
-  start_date=`date --date="yesterday" +"%Y-%m-%d 09:00:00"`
-  end_date=`date +"%Y-%m-%d 09:00:00"`
+  hour=`TZ=GMT; date --date='TZ="Asia/Tehran" 12:30:00' +"%H:%M:00"`
+  start_date=`date --date="yesterday" +"%Y-%m-%d $hour"`
+  end_date=`date +"%Y-%m-%d $hour"`
 fi
 
 [ $DEBUG_MODE == "True" ] && logger "/usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA}"
-[ $DEBUG_MODE == "True" ] && logger "select count(*) from mnp_requestinfolog where status = 2 and createDate between '${start_date}' and '${end_date}'"
+[ $DEBUG_MODE == "True" ] && logger "select count(1) from (select DISTINCT iccid from mnp_requestinfolog where status=1 and createDate BETWEEN '${start_date}' and '${end_date}') as tblReported"
 
 result=`
 /usr/bin/mysql -sN -u ${MYSQL_USERNAME} --password=${MYSQL_PASSWORD} -h ${MYSQL_HOSTNAME} ${MYSQL_SCHEMA} 2>&1 << EOF1:
-select count(*) from mnp_requestinfolog where status = 2 and createDate between '${start_date}' and '${end_date}';
+select count(1) from
+(select DISTINCT iccid from mnp_requestinfolog where status=1 and createDate BETWEEN '${start_date}' and '${end_date}') as tblReported
 EOF1:
 `
 
