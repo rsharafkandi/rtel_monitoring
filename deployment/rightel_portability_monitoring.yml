@@ -24,6 +24,17 @@
       notify:
         - restart httpd
 
+    - name: Install necessary packages
+      apt:
+        name: python-pip
+        state: present
+
+    - name: Install python packages
+      command: pip install {{ item }}
+      with_items:
+        - "suds"
+        - "suds_request"
+
     - name: Create a folder for external scripts
       file:
         path: "/usr/lib/zabbix/externalscripts"
