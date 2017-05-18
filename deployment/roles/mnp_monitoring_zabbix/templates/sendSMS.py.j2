@@ -1,0 +1,47 @@
+#!/usr/bin/python
+
+import sys
+from suds.client import Client
+from suds.wsse import *
+from datetime import timedelta,date,datetime,tzinfo
+import requests
+from requests.auth import HTTPBasicAuth
+import suds_requests
+
+DEBUG = True
+
+if DEBUG == True:
+   outf = open('/tmp/debug_sms.log','a')
+   outf.write( 'sendSMS.py script called' )
+
+def addSecurityHeader(client, username, password):
+   security = Security()
+   userNameToken = UsernameToken(username, password)
+   timeStampToken = Timestamp(validity=600)
+   security.tokens.append(userNameToken)
+   security.tokens.append(timeStampToken)
+   client.set_options(wsse=security)
+
+username = "{{ sms.username }}"
+password = "{{ sms.password }}"
+WSDL_URL = "{{ sms.wsdl_url }}"
+ORIGINATOR = "{{ sms.originator }}"
+
+recipient = sys.argv[1]
+msg_body = ' '.join( sys.argv[2:] )
+
+if DEBUG == True:
+   outf.write( 'recipient: ' + recipient + '\n')
+   outf.write( 'msgbody: ' + msg_body + '\n')
+   outf.write( 'nums: ' + recipient + '\n')
+
+session = requests.session()
+session.auth=(username, password)
+
+client = Client(WSDL_URL, faults=False, cachingpolicy=1, location=WSDL_URL, transport=suds_requests.RequestsTransport(session))
+addSecurityHeader(client, username, password)
+res = client.service.sendSMSByOrigin(nums=recipient, msgs=msg_body, originators=ORIGINATOR)
+
+if DEBUG == True:
+   outf.write('\n')
+   outf.close()

@@ -6,7 +6,7 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-. init_header.sh
+. init_ftp_header.sh
 
 LIBRARY_PATH="lib"
 DEBUG_MODE="False"

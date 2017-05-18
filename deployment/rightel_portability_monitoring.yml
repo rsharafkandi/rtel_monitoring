@@ -7,120 +7,19 @@
 
     zabbix:
       admin_username: "Admin"
-      admin_password: "Adm11npa55$$"
+      admin_password: "xxxx"
     ftp:
       server_address: "172.20.20.1"
       username: "user1"
       password: "xxxx" 
+    sms:
+      username: "username"
+      password: "xxxx"
+      wsdl_url: "http://esb.rightel.ir/RightelSendSMS?wsdl"
+      originator: "12345"
 
-  tasks:
-    - name: set localtime to Asia/Tehran
-      command: cp /usr/share/zoneinfo/Asia/Tehran /etc/localtime
-
-    - name: Change timezone in php.ini
-      lineinfile:
-        dest: "/etc/php5/apache2/php.ini"
-        line: "date.timezone = Asia/Tehran"
-      notify:
-        - restart httpd
-
-    - name: Install necessary packages
-      apt:
-        name: python-pip
-        state: present
-        update_cache: yes
-
-    - name: Install python packages
-      command: pip install {{ item }}
-      with_items:
-        - "suds"
-        - "suds_requests"
-
-    - name: Create a folder for external scripts
-      file:
-        path: "/usr/lib/zabbix/externalscripts"
-        state: "directory"
-        mode: "0755"
-
-    - name: Copy scripts to zabbix externalscripts directory
-      copy:
-        src: "{{ item }}"
-        dest: "/usr/lib/zabbix/externalscripts/{{ item }}"
-        mode: "0755"
-      with_items:
-        - "get_delta_of_last1h_registered_requests.sh"
-        - "get_delta_of_last1h_sim_card_count.sh"
-        - "get_delta_of_last24h_registered_requests.sh"
-        - "get_delta_of_last24h_sim_card_count.sh"
-        - "get_delta_of_last1h_minus_1_and_2.sh"
-        - "get_delta_of_last1h_minus_1_and_plus_1.sh"
-        - "get_item_hourly_count.sh"
-        - "get_item_daily_count.sh"
-        - "get_mnp_web_service_call_count.sh"
-        - "get_reported_requests_from_db.sh"
-        - "get_reported_requests_from_ftp.sh"
-
-    - name: Copy other scripts 
-      template:
-        src: "{{ item }}.j2"
-        dest: "/usr/lib/zabbix/externalscripts/{{ item }}"
-        mode: "0755"
-      with_items:
-        - "init_header.sh"
-      
-    - name: Create lib subdir in zabbix externalscripts directory
-      file:
-        path: "/usr/lib/zabbix/externalscripts/lib"
-        state: "directory"
-        mode: "0755"
-
-    - name: Copy additional scripts to lib directory
-      copy:
-        src: "{{ item }}"
-        dest: "/usr/lib/zabbix/externalscripts/lib"
-        mode: "755"
-      with_items:
-        - "greg2jalali.sh"
-        - "examineMNPFile-0.0.1-SNAPSHOT-jar-with-dependencies.jar"
-
-    - name: Create zabbix-cli directory
-      file: 
-        path: "/opt/zabbix-cli"
-        state: "directory"
-        mode: "0755"
-
-    - name: Git clone zabbix cli
-      git:
-        repo: "https://github.com/usit-gd/zabbix-cli.git"
-        dest: "/opt/zabbix-cli" 
-
-    - name: Install zabbix cli
-      command: "/opt/zabbix-cli/setup.py install"
-      args:
-        chdir: "/opt/zabbix-cli"
-
-    - name: Intialize zabblix cli
-      command: "/usr/local/bin/zabbix-cli-init -z http://localhost/zabbix"
-
-    - name: Copy zabbix-cli_auth file to root home
-      template:
-        src: "zabbix-cli_auth.j2"
-        dest: "/root/.zabbix-cli_auth"
-        mode: "0400"
-
-    - name: Copy zabbix portability monitoring template to /tmp
-      copy:
-        src: "zbx_export_templates.xml"
-        dest: "/tmp/zbx_export_templates.xml"
-
-    - name: Import zabbix portability monitoring template
-      shell: 'printf "/tmp/zbx_export_templates.xml\n0\n" | /usr/local/bin/zabbix-cli --command import_configuration'
-     
-  handlers:
-    - name: restart httpd
-      service:
-        name: apache2
-        state: restarted
+  roles:
+    - mnp_monitoring_zabbix
 
 - hosts: Portal-DB1
   become: true
@@ -129,22 +28,11 @@
   vars:
     mysql:
       schema: "mnp"
-      user: "zab_mon"
-      password: "xxx"
+      user: "username"
+      password: "xxxx"
       host: "localhost"
     zabbix:
-      monitoring_ip_address: "172.20.94.22"
+      monitoring_ip_address: "10.10.10.22"
 
-  tasks:
-    - name: Create monitoring user
-      shell: echo "CREATE USER {{ mysql.user }}@{{ zabbix.monitoring_ip_address }} IDENTIFIED BY '{{ mysql.password }}';" | mysql -u root
-      ignore_errors: yes
-
-    - name: Grant SELECT privilges to user
-      shell: echo "GRANT SELECT ON lportal.{{ item }} TO {{ mysql.user }}@{{ zabbix.monitoring_ip_address }};" | mysql -u root
-      with_items:
-        - mnp_requestinfolog
-        - mnp_webservicelog
-
-    - name: Flush privileges
-      shell: echo "FLUSH PRIVILEGES" | mysql -u root
+  roles:
+    - mnp_monitoring_db

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-05-14T12:00:57Z</date>
+    <date>2017-05-18T06:20:19Z</date>
     <groups>
         <group>
             <name>Portability Monitoring Hosts</name>
@@ -1233,7 +1233,7 @@
                     <snmp_community/>
                     <multiplier>0</multiplier>
                     <snmp_oid/>
-                    <key>get_reported_requests_from_ftp.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
+                    <key>get_reported_requests_from_ftp.sh[]</key>
                     <delay>0</delay>
                     <history>56</history>
                     <trends>365</trends>
@@ -1300,37 +1300,47 @@
             <name>much_less_registered_requests_comparing_the_same_hour_yesterday</name>
             <url/>
             <status>0</status>
-            <priority>0</priority>
+            <priority>4</priority>
             <description/>
             <type>0</type>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10 and {Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;20 and {Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_registered_requests_comparing_yesterday</name>
             <url/>
             <status>0</status>
-            <priority>0</priority>
+            <priority>4</priority>
             <description/>
             <type>0</type>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10 and {Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;5 and {Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_sim_cards_comparing_the_same_hour_yesterday</name>
             <url/>
             <status>0</status>
-            <priority>0</priority>
+            <priority>4</priority>
             <description/>
             <type>0</type>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10 and {Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;15 and {Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_sim_cards_comparing_yesterday</name>
             <url/>
             <status>0</status>
-            <priority>0</priority>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template Portability Monitoring:get_reported_requests_from_db.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()} &lt;&gt; {Template Portability Monitoring:get_reported_requests_from_ftp.sh[].last()}</expression>
+            <name>reported_requests_difference_database_vs_ftp</name>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
             <description/>
             <type>0</type>
             <dependencies/>
@@ -1340,7 +1350,17 @@
             <name>too_much_difference_between_minus_1_and_2_status</name>
             <url/>
             <status>0</status>
-            <priority>0</priority>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_plus_1.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last(0)}&gt;15</expression>
+            <name>too_much_difference_between_minus_1_and_plus_1_status</name>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
             <description/>
             <type>0</type>
             <dependencies/>

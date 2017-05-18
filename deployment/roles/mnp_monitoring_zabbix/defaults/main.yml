@@ -1,0 +1,14 @@
+---
+zabbix:
+  admin_username: "Admin"
+  admin_password: "xxxx"
+ftp:
+  server_address: "172.20.20.1"
+  username: "user1"
+  password: "xxxx"
+sms:
+  username: "username"
+  password: "xxxx"
+  wsdl_url: "http://esb.rightel.ir/RightelSendSMS?wsdl"
+  originator: "12345"
+

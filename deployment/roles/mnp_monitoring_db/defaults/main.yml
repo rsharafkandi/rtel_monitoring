@@ -1,0 +1,9 @@
+---
+mysql:
+  schema: "mnp"
+  user: "username"
+  password: "xxxx"
+  host: "localhost"
+zabbix:
+  monitoring_ip_address: "10.10.10.22"
+

@@ -1,0 +1,14 @@
+---
+- name: Create monitoring user
+  shell: echo "CREATE USER {{ mysql.user }}@{{ zabbix.monitoring_ip_address }} IDENTIFIED BY '{{ mysql.password }}';" | mysql -u root
+  ignore_errors: yes
+
+- name: Grant SELECT privilges to user
+  shell: echo "GRANT SELECT ON lportal.{{ item }} TO {{ mysql.user }}@{{ zabbix.monitoring_ip_address }};" | mysql -u root
+  with_items:
+    - mnp_requestinfolog
+    - mnp_webservicelog
+    - mnp_shahkarcalllog
+
+- name: Flush privileges
+  shell: echo "FLUSH PRIVILEGES" | mysql -u root
