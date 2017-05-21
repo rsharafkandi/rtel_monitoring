@@ -99,12 +99,24 @@
   template:
     src: "zabbix-cli_auth.j2"
     dest: "/root/.zabbix-cli_auth"
-        mode: "0400"
+    mode: "0400"
 
-- name: Copy zabbix portability monitoring template to /tmp
+- name: Copy zabbix portability monitoring templates to /tmp
   copy:
-    src: "zbx_export_templates.xml"
-    dest: "/tmp/zbx_export_templates.xml"
+    src: "{{ item }}"
+    dest: "/tmp/{{ item }}"
+  with_items:
+    - "zbx_export_templates.xml"
+    - "zbx_export_hosts.xml"
 
 - name: Import zabbix portability monitoring template
-  shell: 'printf "/tmp/zbx_export_templates.xml\n0\n" | /usr/local/bin/zabbix-cli --command import_configuration'
+  shell: 'printf "/tmp/{{ item }}\n0\n" | /usr/local/bin/zabbix-cli --command import_configuration'
+  with_items:
+    - "zbx_export_templates.xml"
+    - "zbx_export_hosts.xml"
+
+- name: Create MNP Monitors group
+  shell: 'printf "MNP Monitors\n\n\n" | /usr/local/bin/zabbix-cli --command create_usergroup'
+
+- name: Add permissions to group
+  shell: 'printf "MNP Monitors\nPortability Monitoring Hosts\nRO\n" | /usr/local/bin/zabbix-cli --command add_usergroup_permissions'

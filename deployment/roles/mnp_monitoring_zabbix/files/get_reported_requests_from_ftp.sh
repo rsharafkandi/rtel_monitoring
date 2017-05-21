@@ -6,12 +6,14 @@
 # Developer: Ramin Sharafkandi
 # Head of Team: Hamed Shakiba
 
-. init_ftp_header.sh
-
 LIBRARY_PATH="lib"
 DEBUG_MODE="False"
 DEBUG_LOG="/tmp/zabbix_mnp_monitoring.log"
 DEST_DIR="/tmp"
+SCRIPT_NAME=$( basename $0 )
+DIR_NAME=$( dirname $0 )
+
+. ${DIR_NAME}/init_ftp_header.sh
 
 logger() {
   export TZ="Asia/Tehran"
@@ -29,7 +31,7 @@ else
    today_date=$(date +%Y%m%d)
 fi
 
-today_date_sh=$(${LIBRARY_PATH}/greg2jalali.sh $today_date)
+today_date_sh=$(${DIR_NAME}/${LIBRARY_PATH}/greg2jalali.sh $today_date)
 
 [ ${#today_date_sh} -ne 8 ] && [ $DEBUG_MODE == "True" ] logger "ERROR! Invalid date: $today_date_sh"
 [ ${#today_date_sh} -ne 8 ] && [ $DEBUG_MODE == "True" ] && exit 1

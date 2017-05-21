@@ -8,7 +8,7 @@ fi
 
 mvn clean compile assembly:single
 if [ -f "target/examineMNPFile-0.0.1-SNAPSHOT-jar-with-dependencies.jar" ]; then
-  mv target/examineMNPFile-0.0.1-SNAPSHOT-jar-with-dependencies.jar ../deployment/files/
+  mv target/examineMNPFile-0.0.1-SNAPSHOT-jar-with-dependencies.jar ../deployment/roles/mnp_monitoring_zabbix/files/
 else
   echo "ERROR! Build of examinMNPFile may have been failed!"
   exit 1

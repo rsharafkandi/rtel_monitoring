@@ -1,5 +1,5 @@
 ---
-- hosts: Monitoring
+- hosts: zabbix
   become: true
   become_user: root
 
@@ -7,7 +7,7 @@
 
     zabbix:
       admin_username: "Admin"
-      admin_password: "xxxx"
+      admin_password: "zabbix"
     ftp:
       server_address: "172.20.20.1"
       username: "user1"
