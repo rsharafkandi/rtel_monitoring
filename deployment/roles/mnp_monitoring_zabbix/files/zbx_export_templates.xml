@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-05-18T06:20:19Z</date>
+    <date>2017-05-21T13:01:59Z</date>
     <groups>
         <group>
             <name>Portability Monitoring Hosts</name>
@@ -288,7 +288,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;]</key>
-                    <delay>14400</delay>
+                    <delay>10800</delay>
                     <history>56</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -331,7 +331,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;positive&quot;]</key>
-                    <delay>14400</delay>
+                    <delay>10800</delay>
                     <history>56</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -374,7 +374,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;]</key>
-                    <delay>0</delay>
+                    <delay>10800</delay>
                     <history>56</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -390,7 +390,7 @@
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
-                    <delay_flex>h23</delay_flex>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
@@ -417,7 +417,7 @@
                     <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;positive&quot;]</key>
-                    <delay>0</delay>
+                    <delay>10800</delay>
                     <history>56</history>
                     <trends>365</trends>
                     <status>0</status>
@@ -433,7 +433,7 @@
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
                     <formula>1</formula>
-                    <delay_flex>h23</delay_flex>
+                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
                     <data_type>0</data_type>
@@ -970,6 +970,49 @@
                     <logtimefmt/>
                 </item>
                 <item>
+                    <name>shahkar_call_count</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>get_mnp_shahkar_estelaam_call_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
+                    <delay>1800</delay>
+                    <history>56</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Portability</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
                     <name>web_service_cancelportinrequest_call_count</name>
                     <type>10</type>
                     <snmp_community/>
@@ -1296,7 +1339,7 @@
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;10</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;20</expression>
             <name>much_less_registered_requests_comparing_the_same_hour_yesterday</name>
             <url/>
             <status>0</status>
@@ -1306,7 +1349,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;20 and {Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;40 and {Template Portability Monitoring:get_delta_of_last24h_registered_requests.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_registered_requests_comparing_yesterday</name>
             <url/>
             <status>0</status>
@@ -1316,7 +1359,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;5 and {Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;15</expression>
             <name>much_less_sim_cards_comparing_the_same_hour_yesterday</name>
             <url/>
             <status>0</status>
@@ -1326,7 +1369,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;15 and {Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].last()}&gt;40 and {Template Portability Monitoring:get_delta_of_last24h_sim_card_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;,&quot;-m&quot;,&quot;negative&quot;].time()}&gt;203000</expression>
             <name>much_less_sim_cards_comparing_yesterday</name>
             <url/>
             <status>0</status>
@@ -1339,14 +1382,14 @@
             <expression>{Template Portability Monitoring:get_reported_requests_from_db.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()} &lt;&gt; {Template Portability Monitoring:get_reported_requests_from_ftp.sh[].last()}</expression>
             <name>reported_requests_difference_database_vs_ftp</name>
             <url/>
-            <status>0</status>
+            <status>1</status>
             <priority>4</priority>
             <description/>
             <type>0</type>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_2.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()}&gt;10</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_2.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()}&gt;25</expression>
             <name>too_much_difference_between_minus_1_and_2_status</name>
             <url/>
             <status>0</status>
@@ -1356,7 +1399,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_plus_1.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last(0)}&gt;15</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_plus_1.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last(0)}&gt;30</expression>
             <name>too_much_difference_between_minus_1_and_plus_1_status</name>
             <url/>
             <status>0</status>
