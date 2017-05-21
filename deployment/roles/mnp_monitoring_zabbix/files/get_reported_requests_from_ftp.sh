@@ -52,7 +52,7 @@ EOF1
 latest_report_file=$(ls -1tr ${DEST_DIR}/${mnp_report_file}* | tail -n 1)
 [ $DEBUG_MODE == "True" ] && logger "Latest downloaded report filename is : $latest_report_file"
 
-row_count=$(java -cp ${LIBRARY_PATH}/examineMNPFile-0.0.1-SNAPSHOT-jar-with-dependencies.jar com.tooka.rightel.MNPMonitoring.ApachePOIExcelParserRunnable -f ${latest_report_file} -c rowcount)
+row_count=$(java -cp ${DIR_NAME}/${LIBRARY_PATH}/examineMNPFile-0.0.1-SNAPSHOT-jar-with-dependencies.jar com.tooka.rightel.MNPMonitoring.ApachePOIExcelParserRunnable -f ${latest_report_file} -c rowcount)
 
 [ $DEBUG_MODE == "True" ] && logger "Row count of ${latest_report_file} is $row_count"
 
