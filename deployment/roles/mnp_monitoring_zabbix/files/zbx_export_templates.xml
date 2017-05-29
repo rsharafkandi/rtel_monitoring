@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.0</version>
-    <date>2017-05-24T04:12:38Z</date>
+    <date>2017-05-29T09:59:17Z</date>
     <groups>
         <group>
             <name>Portability Monitoring Hosts</name>
@@ -970,49 +970,6 @@
                     <logtimefmt/>
                 </item>
                 <item>
-                    <name>shahkar_call_count</name>
-                    <type>10</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>get_mnp_shahkar_estelaam_call_count.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;]</key>
-                    <delay>1800</delay>
-                    <history>56</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>Portability</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-                <item>
                     <name>web_service_cancelportinrequest_call_count</name>
                     <type>10</type>
                     <snmp_community/>
@@ -1425,14 +1382,14 @@
             <expression>{Template Portability Monitoring:get_reported_requests_from_db.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()} &lt;&gt; {Template Portability Monitoring:get_reported_requests_from_ftp.sh[].last()}</expression>
             <name>reported_requests_difference_database_vs_ftp</name>
             <url/>
-            <status>1</status>
+            <status>0</status>
             <priority>4</priority>
             <description/>
             <type>0</type>
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_2.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()}&gt;40</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_2.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last()}&gt;50</expression>
             <name>too_much_difference_between_minus_1_and_2_status</name>
             <url/>
             <status>0</status>
@@ -1442,7 +1399,7 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_plus_1.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last(0)}&gt;35</expression>
+            <expression>{Template Portability Monitoring:get_delta_of_last1h_minus_1_and_plus_1.sh[&quot;-u&quot;,&quot;{$MYSQL_USERNAME}&quot;,&quot;-p&quot;,&quot;{$MYSQL_PASSWORD}&quot;,&quot;-h&quot;,&quot;{$MYSQL_HOSTNAME}&quot;,&quot;-s&quot;,&quot;{$SCHEMA}&quot;].last(0)}&gt;45</expression>
             <name>too_much_difference_between_minus_1_and_plus_1_status</name>
             <url/>
             <status>0</status>
